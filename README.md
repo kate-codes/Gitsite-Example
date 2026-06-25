@@ -1,6 +1,12 @@
 # Hello World - React + GitHub Pages
 
-A simple hello world React app hosted on GitHub Pages. With deployer GHA (repo must be public for it to run free). There is also a pre-commit hook to prevent less experienced... or slightly more experienced but exhausted engineers from shooting themselves in the foot and accidentally commiting secrets in cleartext ([see Privacy Scan script](./scripts/privacy-scan.js)). 
+A simple hello world React app hosted on GitHub Pages. 
+
+
+With deployer GHA!* (*repo must be public for it to run free, and is not configured for this repo as it is an example.)
+
+
+There is also a pre-commit hook to prevent less experienced... or slightly more experienced but exhausted engineers from shooting themselves in the foot and accidentally commiting secrets in cleartext ([see Privacy Scan script](./scripts/privacy-scan.js)). 
 
 A non-exhaustive list of secrets scanned for:
 
