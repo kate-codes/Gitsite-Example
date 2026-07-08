@@ -121,9 +121,18 @@ function readStagedFiles() {
     }
 }
 
+function shouldIgnoreFile(filePath) {
+    const normalizedPath = path.normalize(filePath).replace(/\\/g, '/');
+    return normalizedPath === 'dist' ||
+        normalizedPath.startsWith('dist/') ||
+        normalizedPath.includes('/dist/') ||
+        normalizedPath.startsWith('dist\\') ||
+        normalizedPath.includes('\\dist\\');
+}
+
 function collectFiles() {
     const staged = readStagedFiles();
-    const files = new Set(staged);
+    const files = new Set(staged.filter((file) => !shouldIgnoreFile(file)));
 
     if (fs.existsSync('dist')) {
         const walk = (directory) => {
@@ -132,7 +141,7 @@ function collectFiles() {
                 const fullPath = path.join(directory, entry.name);
                 if (entry.isDirectory()) {
                     walk(fullPath);
-                } else {
+                } else if (!shouldIgnoreFile(fullPath)) {
                     files.add(fullPath);
                 }
             }
